@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Services | Wastely</title>
+<link rel="icon" type="image/png" href="assets/wastely-icon-navy.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="./services-data.js"></script>
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  body { margin: 0; background: #0E2438; -webkit-font-smoothing: antialiased; }
+  a { color: #B1CDC6; text-decoration: none; }
+  a:hover { color: #D2E3DE; }
+  ::selection { background: #B1CDC6; color: #0E2438; }
+</style>
+</helmet>
+
+<div style="background:#0E2438;color:#FCFCED;font-family:Inter,system-ui,sans-serif;font-weight:300;font-size:17px;line-height:1.6;overflow-x:hidden">
+  <dc-import name="SiteHeader" active="services" style="position:sticky;top:0;z-index:50;display:block" hint-size="100%,74px"></dc-import>
+
+  <section style="padding:clamp(48px,6vw,96px) clamp(16px,4vw,56px) clamp(28px,3vw,44px);max-width:1440px;margin:0 auto">
+    <h1 style="margin:0 0 18px;font-family:Inter,sans-serif;font-weight:800;font-size:clamp(31px,4.6vw,72px);line-height:0.92;text-transform:uppercase;letter-spacing:-0.032em">Services</h1>
+    <p style="margin:0;max-width:600px;font-size:clamp(16px,1.25vw,19px);color:#AEC1CD;line-height:1.65">Pick a service for details and a quote. Combine any of them into one job. Jobs start at $5,000.</p>
+  </section>
+
+  <section style="padding:0 clamp(16px,4vw,56px) clamp(64px,8vw,120px);max-width:1440px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:clamp(24px,3vw,44px)">
+    <sc-for list="{{ groups }}" as="g" hint-placeholder-count="4">
+      <div style="display:flex;flex-direction:column">
+        <span style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:#B1CDC6;padding-bottom:12px;border-bottom:1px solid #B1CDC6">{{ g.title }}</span>
+        <sc-for list="{{ g.items }}" as="s" hint-placeholder-count="4">
+          <a href="{{ s.page }}" style="display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:56px;padding:14px 0;border-bottom:1px solid rgba(252,252,237,0.1);color:#FCFCED;font-weight:600;font-size:17px" style-hover="color:#B1CDC6">
+            <span style="flex:1;min-width:0">{{ s.title }}</span><span style="color:#B1CDC6">→</span></a>
+        </sc-for>
+      </div>
+    </sc-for>
+  </section>
+
+  <dc-import name="SiteFooter" hint-size="100%,360px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:430}}">
+class Component extends DCLogic {
+  componentDidMount() {
+    if (!window.WASTELY_SERVICES) this._w = setInterval(() => { if (window.WASTELY_SERVICES) { clearInterval(this._w); this.forceUpdate(); } }, 40);
+  }
+  componentWillUnmount() { clearInterval(this._w); }
+  renderVals() {
+    return { groups: window.WASTELY_SERVICES || [] };
+  }
+}
+</script>
+</body>
+</html>
