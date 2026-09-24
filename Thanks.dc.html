@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Thank you | Wastely</title>
+<link rel="icon" type="image/png" href="assets/wastely-icon-navy.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  body { margin: 0; background: #0E2438; -webkit-font-smoothing: antialiased; }
+  a { color: #B1CDC6; text-decoration: none; }
+  a:hover { color: #D2E3DE; }
+  ::selection { background: #B1CDC6; color: #0E2438; }
+</style>
+</helmet>
+<div style="background:#0E2438;color:#FCFCED;font-family:Inter,system-ui,sans-serif;font-weight:300;font-size:17px;line-height:1.6;overflow-x:hidden;min-height:100vh;display:flex;flex-direction:column">
+  <dc-import name="SiteHeader" style="position:sticky;top:0;z-index:50;display:block" hint-size="100%,74px"></dc-import>
+  <section style="flex:1;padding:clamp(64px,9vw,140px) clamp(16px,4vw,56px);max-width:1440px;width:100%;margin:0 auto">
+    <div style="display:flex;align-items:center;gap:14px;margin-bottom:26px">
+      <span style="width:30px;height:1px;background:#B1CDC6"></span>
+      <span style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:#B1CDC6">{{ eyebrow }}</span>
+    </div>
+    <h1 style="margin:0 0 28px;font-family:Inter,sans-serif;font-weight:800;font-size:clamp(34px,5.6vw,88px);line-height:0.92;text-transform:uppercase;letter-spacing:-0.032em;max-width:14ch">{{ heading }}</h1>
+    <p style="margin:0 0 clamp(40px,5vw,64px);max-width:620px;font-size:clamp(16px,1.3vw,20px);color:#AEC1CD;line-height:1.7">{{ body }}</p>
+    <sc-if value="{{ isQuote }}" hint-placeholder-val="{{ true }}">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:clamp(20px,2.5vw,36px);margin-bottom:clamp(44px,5vw,70px)">
+        <sc-for list="{{ steps }}" as="s" hint-placeholder-count="3">
+          <div style="display:flex;flex-direction:column;gap:10px;padding-top:20px;border-top:1px solid #B1CDC6">
+            <span style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11px;letter-spacing:0.16em;color:#B1CDC6">{{ s.num }}</span>
+            <h2 style="margin:0;font-family:Inter,sans-serif;font-weight:600;font-size:20px;text-transform:uppercase;letter-spacing:0.005em">{{ s.title }}</h2>
+            <p style="margin:0;font-size:15px;color:#9AB0BE;line-height:1.65">{{ s.body }}</p>
+          </div>
+        </sc-for>
+      </div>
+    </sc-if>
+    <div style="display:flex;flex-wrap:wrap;gap:12px">
+      <a href="tel:+13434631909" style="display:inline-flex;align-items:center;padding:17px 30px;background:#B1CDC6;color:#0E2438;font-weight:700;font-size:16px;letter-spacing:0.035em" style-hover="background:#D2E3DE">Call (343) 463-1909</a>
+      <a href="{{ againHref }}" style="display:inline-flex;align-items:center;padding:17px 30px;border:1px solid rgba(252,252,237,0.25);color:#FCFCED;font-weight:600;font-size:16px;letter-spacing:0.02em" style-hover="border-color:#B1CDC6;color:#FCFCED">{{ againLabel }}</a>
+    </div>
+  </section>
+  <dc-import name="SiteFooter" hint-size="100%,360px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:430}}">
+class Component extends DCLogic {
+  componentDidMount() {
+    if (window.gtag) window.gtag('event', 'generate_lead', { form: this.from() });
+  }
+  from() { return new URLSearchParams(location.search).get('from') || 'quote'; }
+  renderVals() {
+    const careers = this.from() === 'careers';
+    const back = new URLSearchParams(location.search).get('back');
+    return {
+      againHref: back && /^[\w.-]*\.(dc\.)?html(\?.*)?$|^$/.test(back) && back ? back : 'Wastely.dc.html',
+      againLabel: careers ? 'Send another application' : 'Send another request',
+      isQuote: !careers,
+      eyebrow: careers ? 'Application received' : 'Request received',
+      heading: careers ? 'Thanks for applying' : 'Thanks. We have your details',
+      body: careers
+        ? 'Your application is with our team. If your experience fits a current crew, we will call you to set up a conversation.'
+        : 'Your project details are with our team. Expect a call back within the hour. If the job is urgent, call now and dispatch will pick up live, 24 hours a day.',
+      steps: [
+        { num: '01', title: 'We call you back', body: 'Within the hour, to confirm scope, access and timing.' },
+        { num: '02', title: 'Site walk or photos', body: 'We see the job before we price it, in person or from photos you send.' },
+        { num: '03', title: 'Fixed written quote', body: 'One number covering labour, hauling, disposal and documentation.' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>
