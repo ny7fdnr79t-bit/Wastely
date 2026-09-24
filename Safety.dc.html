@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" type="image/png" href="assets/wastely-icon-navy.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="./image-slot.js"></script>
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: #0E2438; -webkit-font-smoothing: antialiased; }
+  a { color: #B1CDC6; text-decoration: none; }
+  a:hover { color: #D2E3DE; }
+  ::selection { background: #B1CDC6; color: #0E2438; }
+</style>
+</helmet>
+
+<div style="background:#0E2438;color:#FCFCED;font-family:Inter,system-ui,sans-serif;font-weight:300;font-size:17px;line-height:1.6;overflow-x:hidden">
+  <dc-import name="SiteHeader" active="safety" style="position:sticky;top:0;z-index:50;display:block" hint-size="100%,74px"></dc-import>
+
+  <section style="padding:clamp(56px,7vw,110px) clamp(16px,4vw,56px) clamp(40px,5vw,70px);max-width:1440px;margin:0 auto;border-bottom:1px solid rgba(252,252,237,0.1)">
+    <div style="display:flex;align-items:center;gap:14px;margin-bottom:26px">
+      <span style="width:30px;height:1px;background:#B1CDC6"></span>
+      <span style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:#B1CDC6">Safety &amp; Compliance</span>
+    </div>
+    <h1 style="margin:0 0 30px;font-family:Inter,sans-serif;font-weight:800;font-size:clamp(31px,5.2vw,84px);line-height:0.92;text-transform:uppercase;letter-spacing:-0.032em;max-width:15ch">The paper trail is the product</h1>
+    <p style="margin:0;max-width:660px;font-size:clamp(16px,1.3vw,20px);color:#AEC1CD;line-height:1.7">Anyone can move a bin. What you are actually buying is proof that every load left your property legally and arrived where it was supposed to. Generator liability does not end at your gate, so our documentation is built to survive an audit rather than to close an invoice.</p>
+  </section>
+
+  <section style="padding:clamp(48px,6vw,96px) clamp(16px,4vw,56px);max-width:1440px;margin:0 auto">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:1px;background:rgba(252,252,237,0.1);border:1px solid rgba(252,252,237,0.1)">
+      <sc-for list="{{ pillars }}" as="p" hint-placeholder-count="6">
+        <div style="background:#0E2438;padding:clamp(26px,2.6vw,40px);display:flex;flex-direction:column;gap:14px;min-height:230px">
+          <span style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11px;letter-spacing:0.16em;color:#B1CDC6">{{ p.num }}</span>
+          <h2 style="margin:0;font-family:Inter,sans-serif;font-weight:700;font-size:clamp(19px,1.5vw,23px);line-height:1.1;text-transform:uppercase;letter-spacing:-0.012em">{{ p.title }}</h2>
+          <p style="margin:0;font-size:15.5px;color:#9AB0BE;line-height:1.65">{{ p.body }}</p>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <section style="background:#14344F;border-top:1px solid rgba(252,252,237,0.1);border-bottom:1px solid rgba(252,252,237,0.1);padding:clamp(56px,7vw,110px) clamp(16px,4vw,56px)">
+    <div style="max-width:1440px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:clamp(32px,5vw,80px);align-items:start">
+      <div>
+        <h2 style="margin:0 0 22px;font-family:Inter,sans-serif;font-weight:800;font-size:clamp(24px,2.7vw,40px);line-height:1;text-transform:uppercase;letter-spacing:-0.03em">What you get on file</h2>
+        <p style="margin:0 0 30px;font-size:16px;color:#9AB0BE;line-height:1.7;max-width:520px">Every document below comes as part of the job, not as a favour when an auditor asks. If your insurer, your parent company or a tender needs something else on file, name it at the site walk and it comes with the package.</p>
+        <div style="position:relative;width:100%;aspect-ratio:4/3;background:#16394F;border:1px solid rgba(252,252,237,0.11)">
+          <image-slot id="ws-safety-1" shape="rect" placeholder="Crew in PPE / containment setup"></image-slot>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column">
+        <sc-for list="{{ documents }}" as="d" hint-placeholder-count="8">
+          <div style="display:flex;align-items:flex-start;gap:18px;padding:18px 0;border-bottom:1px solid rgba(252,252,237,0.11)">
+            <span style="width:6px;height:6px;background:#B1CDC6;flex-shrink:0;margin-top:9px"></span>
+            <div>
+              <div style="font-family:Inter,sans-serif;font-weight:600;font-size:18px;text-transform:uppercase;letter-spacing:0.005em">{{ d.title }}</div>
+              <div style="font-size:15px;color:#9AB0BE;line-height:1.6;margin-top:3px">{{ d.body }}</div>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding:clamp(56px,7vw,110px) clamp(16px,4vw,56px);max-width:1440px;margin:0 auto">
+    <h2 style="margin:0 0 clamp(32px,3.5vw,52px);font-family:Inter,sans-serif;font-weight:800;font-size:clamp(24px,2.7vw,40px);line-height:1;text-transform:uppercase;letter-spacing:-0.03em;max-width:20ch">Daily control on a working site</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:clamp(20px,2.5vw,36px)">
+      <sc-for list="{{ daily }}" as="d" hint-placeholder-count="4">
+        <div style="display:flex;flex-direction:column;gap:12px;padding-top:20px;border-top:1px solid #B1CDC6">
+          <h3 style="margin:0;font-family:Inter,sans-serif;font-weight:600;font-size:20px;text-transform:uppercase;letter-spacing:0.005em">{{ d.title }}</h3>
+          <p style="margin:0;font-size:15px;color:#9AB0BE;line-height:1.65">{{ d.body }}</p>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <section style="background:#14344F;border-top:1px solid rgba(252,252,237,0.1);padding:clamp(56px,7vw,110px) clamp(16px,4vw,56px);text-align:center">
+    <h2 style="margin:0 auto 22px;font-family:Inter,sans-serif;font-weight:800;font-size:clamp(25px,3.4vw,50px);line-height:0.98;text-transform:uppercase;max-width:20ch">Need our vendor package for a tender?</h2>
+    <p style="margin:0 auto 36px;font-size:clamp(16px,1.25vw,19px);color:#AEC1CD;line-height:1.65;max-width:560px">Call and we will send current WSIB clearance, insurance certificates, licensing and training records the same day.</p>
+    <a href="tel:+10000000000" style="display:inline-block;padding:17px 34px;background:#B1CDC6;color:#0E2438;font-weight:700;font-size:clamp(15px,1.15vw,18px);letter-spacing:0.035em" style-hover="background:#D2E3DE">Call (000) 000-0000</a>
+  </section>
+
+  <dc-import name="SiteFooter" hint-size="100%,360px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:430}}">
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      pillars: [
+        { num: '01', title: 'Licensed Waste Handling', body: 'Regulated and hazardous streams moved under the approvals those streams require, to receivers licensed to accept them. Nothing is routed to a facility that cannot legally take it.' },
+        { num: '02', title: 'Manifested Chain of Custody', body: 'Every regulated load is manifested from your gate to its receiving facility. You hold the record showing where it went and who signed for it.' },
+        { num: '03', title: 'WSIB Covered', body: 'Current WSIB clearance held at all times and issued to your office before we attend. Every person on your property is covered.' },
+        { num: '04', title: 'Fully Insured', body: 'Commercial general liability and environmental coverage appropriate to the scope, with certificates naming your project where the contract requires it.' },
+        { num: '05', title: 'Trained Crews', body: 'WHMIS, transportation of dangerous goods, confined space, working at heights and asbestos operations training kept current, with records available on request.' },
+        { num: '06', title: 'Documented Close-Out', body: 'Manifests, weigh tickets, diversion tonnage, clearance certificates and photographs supplied as one package at completion.' }
+      ],
+      documents: [
+        { title: 'Waste Manifests', body: 'One per regulated load, from your gate to the licensed receiver.' },
+        { title: 'Weigh Tickets', body: 'Actual scale weights, not estimates, per load and per stream.' },
+        { title: 'Diversion Reporting', body: 'Tonnage recycled versus landfilled, in a form you can use for ESG or tender reporting.' },
+        { title: 'WSIB Clearance Certificate', body: 'Current and valid for the duration of the work.' },
+        { title: 'Certificate of Insurance', body: 'Liability and environmental coverage, with your project named where required.' },
+        { title: 'Clearance Air Testing', body: 'Third-party results for every asbestos enclosure before it comes down.' },
+        { title: 'Waste Profiles', body: 'Characterization records for each hazardous stream we move for you.' },
+        { title: 'Crew Certification Records', body: 'Training tickets for everyone attending your site.' }
+      ],
+      daily: [
+        { title: 'Containment & Exclusion Zones', body: 'Work areas secured and signed, with controlled access and clear separation from staff, tenants and the public.' },
+        { title: 'Dust, Odour & Noise Control', body: 'Suppression, filtration, screening and scheduled hours, especially in buildings that stay occupied while we work.' },
+        { title: 'Daily Toolbox Talks', body: 'Hazards, streams and changes reviewed with the crew every morning before work starts.' },
+        { title: 'Incident Reporting', body: 'Any incident, spill or near-miss documented and reported to you the same day, in writing.' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>
