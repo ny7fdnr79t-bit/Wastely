@@ -134,7 +134,7 @@ class Component extends DCLogic {
         : 'I understand Wastely takes on jobs from ' + this.money(this.MIN) + ' and up.',
       prompt: (cur && cur.prompt) || 'What is the property, and what has to come out?',
       sent: s.sent, notSent: !s.sent,
-      onSubmit: (e) => { e.preventDefault(); this.setState({ sent: true }); }
+      onSubmit: (e) => { e.preventDefault(); const f = e.target; const d = { _subject: 'Wastely website: ' + (document.title || 'enquiry'), _template: 'table', _captcha: 'false', page: location.href }; f.querySelectorAll('input,select,textarea').forEach((el, i) => { const lb = el.closest('label'); const sp = lb && lb.querySelector('span'); if (el.type === 'checkbox') { if (el.checked) d['confirmed'] = lb ? lb.textContent.trim() : 'yes'; return; } if (!el.value) return; d[el.name || (sp && sp.textContent.trim()) || el.placeholder || ('field ' + i)] = el.value; }); const picked = Array.from(f.querySelectorAll('button[aria-pressed="true"]')).map(b => b.textContent.replace('\u2713', '').trim()); if (picked.length) d.services = picked.join(', '); fetch('https://formsubmit.co/ajax/go@wastely.ca', { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify(d) }).catch(() => {}); this.setState({ sent: true }); }
     };
   }
 }

@@ -21,7 +21,7 @@
 </helmet>
 
 <div style="background:#0E2438;color:#FCFCED;font-family:Inter,system-ui,sans-serif;font-weight:300;font-size:17px;line-height:1.6;overflow-x:clip">
-  <dc-import name="SiteHeader" active="services" style="position:sticky;top:0;z-index:50;display:block" hint-size="100%,74px"></dc-import>
+  <dc-import name="SiteHeader" active="services-page" style="position:sticky;top:0;z-index:50;display:block" hint-size="100%,74px"></dc-import>
 
   <section style="padding:clamp(40px,5vw,84px) clamp(16px,4vw,56px) clamp(48px,6vw,90px);max-width:1440px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,400px),1fr));gap:clamp(32px,5vw,80px);align-items:start">
     <div style="display:flex;flex-direction:column;gap:24px;min-width:0">
@@ -38,7 +38,7 @@
         </sc-for>
       </div>
       <div style="display:flex;flex-wrap:wrap;gap:12px;margin-top:4px">
-        <a href="tel:+10000000000" style="display:inline-flex;align-items:center;min-height:52px;padding:14px 26px;background:#B1CDC6;color:#0E2438;font-weight:700;font-size:16px;letter-spacing:0.02em" style-hover="background:#FCFCED;color:#0E2438">Call (000) 000-0000</a>
+        <a href="tel:+13434631909" style="display:inline-flex;align-items:center;min-height:52px;padding:14px 26px;background:#B1CDC6;color:#0E2438;font-weight:700;font-size:16px;letter-spacing:0.02em" style-hover="background:#FCFCED;color:#0E2438">Call (343) 463-1909</a>
         <span style="display:inline-flex;align-items:center;font-size:14px;color:#8DA5B4">24/7 · An owner answers</span>
       </div>
     </div>
@@ -86,7 +86,7 @@
     <h2 style="margin:0 auto 22px;font-family:Inter,sans-serif;font-weight:800;font-size:clamp(26px,3.4vw,50px);line-height:0.96;text-transform:uppercase;max-width:18ch">Ready to book {{ title }}?</h2>
     <div style="display:flex;flex-wrap:wrap;gap:12px;justify-content:center">
       <a href="#quote" style="display:inline-flex;align-items:center;min-height:52px;padding:14px 28px;background:#B1CDC6;color:#0E2438;font-weight:700;font-size:16px;letter-spacing:0.02em;text-transform:uppercase" style-hover="background:#FCFCED;color:#0E2438">Get my quote</a>
-      <a href="tel:+10000000000" style="display:inline-flex;align-items:center;min-height:52px;padding:14px 28px;border:1px solid rgba(252,252,237,0.22);color:#FCFCED;font-weight:600;font-size:16px" style-hover="border-color:#B1CDC6;color:#B1CDC6">Call (000) 000-0000</a>
+      <a href="tel:+13434631909" style="display:inline-flex;align-items:center;min-height:52px;padding:14px 28px;border:1px solid rgba(252,252,237,0.22);color:#FCFCED;font-weight:600;font-size:16px" style-hover="border-color:#B1CDC6;color:#B1CDC6">Call (343) 463-1909</a>
     </div>
   </section>
 
@@ -114,7 +114,7 @@ class Component extends DCLogic {
       pairs: (s.pairNums || []).map(n => all.find(x => x.num === n)).filter(Boolean).map(x => ({ title: x.title, page: x.page })),
       trust: ['Fully insured', 'WSIB cleared', 'Anywhere in Ontario', 'Jobs from $5,000'],
       sent: this.state.sent, notSent: !this.state.sent,
-      onSubmit: (e) => { e.preventDefault(); this.setState({ sent: true }); }
+      onSubmit: (e) => { e.preventDefault(); const f = e.target; const d = { _subject: 'Wastely website: ' + (document.title || 'enquiry'), _template: 'table', _captcha: 'false', page: location.href }; f.querySelectorAll('input,select,textarea').forEach((el, i) => { const lb = el.closest('label'); const sp = lb && lb.querySelector('span'); if (el.type === 'checkbox') { if (el.checked) d['confirmed'] = lb ? lb.textContent.trim() : 'yes'; return; } if (!el.value) return; d[el.name || (sp && sp.textContent.trim()) || el.placeholder || ('field ' + i)] = el.value; }); const picked = Array.from(f.querySelectorAll('button[aria-pressed="true"]')).map(b => b.textContent.replace('\u2713', '').trim()); if (picked.length) d.services = picked.join(', '); fetch('https://formsubmit.co/ajax/go@wastely.ca', { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify(d) }).catch(() => {}); this.setState({ sent: true }); }
     };
   }
 }
