@@ -1,0 +1,7 @@
+{
+  "redirects": [
+    { "source": "/junk-removal", "destination": "/Services.dc.html", "permanent": true },
+    { "source": "/furniture-removal", "destination": "/Services.dc.html", "permanent": true },
+    { "source": "/cleanouts", "destination": "/estate-cleanout.dc.html", "permanent": true }
+  ]
+}
