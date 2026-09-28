@@ -97,7 +97,7 @@ class Component extends DCLogic {
   FILL = { 'Light — a few rooms': 0.75, 'Normal contents': 1, 'Packed — full to the walls': 1.4, 'Hoarding or biohazard': 1.9 };
   ACCESS = { 'Ground level, truck at the door': 1, 'Elevator building': 1.1, 'Stairs or walk-up': 1.18, 'Occupied or restricted site': 1.3 };
   SPEED = { 'Standard — two weeks or more': 1, 'Within a week': 1.12, '24–48 hour emergency': 1.4 };
-  MIN = 5000;
+  MIN = 2500;
   componentDidMount() {
     if (!window.WASTELY_SERVICES) this._w = setInterval(() => { if (window.WASTELY_SERVICES) { clearInterval(this._w); this.forceUpdate(); } }, 40);
   }

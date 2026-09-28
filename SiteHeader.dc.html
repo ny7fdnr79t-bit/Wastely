@@ -27,7 +27,7 @@
       </sc-for>
     </nav>
     <div style="display:flex;align-items:center;gap:14px;flex-shrink:0">
-      <a href="tel:+13434631909" style="display:none;align-items:center;padding:10px 20px;background:#B1CDC6;color:#0E2438;text-decoration:none;font-weight:700;font-size:15px;letter-spacing:0.02em;white-space:nowrap" style-hover="background:#D2E3DE;color:#0E2438" data-ws-desk="1">(343) 463-1909</a>
+      <a href="tel:+13438011914" style="display:none;align-items:center;padding:10px 20px;background:#B1CDC6;color:#0E2438;text-decoration:none;font-weight:700;font-size:15px;letter-spacing:0.02em;white-space:nowrap" style-hover="background:#D2E3DE;color:#0E2438" data-ws-desk="1">(343) 801-1914</a>
       <button onClick="{{ toggle }}" aria-label="Menu" style="display:flex;flex-direction:column;justify-content:center;gap:5px;width:44px;height:44px;padding:0 10px;background:transparent;border:1px solid rgba(252,252,237,0.18);cursor:pointer" data-ws-burger="1">
         <span style="display:block;height:2px;width:100%;background:#FCFCED"></span>
         <span style="display:block;height:2px;width:100%;background:#FCFCED"></span>
@@ -67,12 +67,12 @@
       <sc-for list="{{ links }}" as="l" hint-placeholder-count="5">
         <a href="{{ l.href }}" onClick="{{ close }}" style="padding:15px 0;border-bottom:1px solid rgba(252,252,237,0.09);font-size:17px;font-weight:600;text-decoration:none;color:#FCFCED" style-hover="color:#B1CDC6">{{ l.label }}</a>
       </sc-for>
-      <a href="tel:+13434631909" style="margin-top:18px;text-align:center;padding:15px 20px;background:#B1CDC6;color:#0E2438;text-decoration:none;font-weight:700;font-size:17px;letter-spacing:0.02em" style-hover="background:#D2E3DE;color:#0E2438">Call (343) 463-1909</a>
+      <a href="tel:+13438011914" style="margin-top:18px;text-align:center;padding:15px 20px;background:#B1CDC6;color:#0E2438;text-decoration:none;font-weight:700;font-size:17px;letter-spacing:0.02em" style-hover="background:#D2E3DE;color:#0E2438">Call (343) 801-1914</a>
     </div>
   </sc-if>
 </div>
   <div data-ws-mbar="1" style="display:none;position:fixed;left:0;right:0;bottom:0;z-index:200;gap:8px;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:rgba(14,36,56,0.96);backdrop-filter:blur(12px);border-top:1px solid rgba(252,252,237,0.14)">
-    <a href="tel:+13434631909" style="flex:1;display:flex;align-items:center;justify-content:center;gap:8px;min-height:50px;background:#B1CDC6;color:#0E2438;font-family:Inter,sans-serif;font-weight:800;font-size:16px;letter-spacing:0.02em;text-decoration:none">Call now</a>
+    <a href="tel:+13438011914" style="flex:1;display:flex;align-items:center;justify-content:center;gap:8px;min-height:50px;background:#B1CDC6;color:#0E2438;font-family:Inter,sans-serif;font-weight:800;font-size:16px;letter-spacing:0.02em;text-decoration:none">Call now</a>
     <a href="{{ quoteHref }}" style="flex:1;display:flex;align-items:center;justify-content:center;min-height:50px;border:1px solid #B1CDC6;color:#FCFCED;font-family:Inter,sans-serif;font-weight:700;font-size:16px;letter-spacing:0.02em;text-decoration:none">Get my price</a>
   </div>
 </div>
@@ -130,8 +130,7 @@ class Component extends DCLogic {
         { href: 'Safety.dc.html', label: 'Safety', color: active === 'safety' ? on : off },
         { href: 'Careers.dc.html', label: 'Careers', color: active === 'careers' ? on : off },
         { href: 'Questions.dc.html', label: 'Questions', color: active === 'questions' ? on : off },
-        { href: 'Contact.dc.html', label: 'Contact', color: active === 'contact' ? on : off },
-        { href: 'Wastely.dc.html#support', label: 'Support', color: active === 'support' ? on : off }
+        { href: 'Contact.dc.html', label: 'Contact', color: active === 'contact' ? on : off }
       ]
     };
   }

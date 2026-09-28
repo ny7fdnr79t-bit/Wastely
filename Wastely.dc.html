@@ -28,6 +28,19 @@
   @keyframes wsSpin { to { transform: rotate(360deg); } }
   @keyframes wsHalo { 0% { transform: scale(1); opacity: .55; } 100% { transform: scale(1.5); opacity: 0; } }
   @keyframes wsCount { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+  @media (max-width: 999px) {
+    [data-ws-hero] { min-height: 0 !important; }
+    [data-ws-hero-media] { position: relative !important; inset: auto !important; }
+    [data-ws-hero-media] img { height: auto !important; object-fit: contain !important; }
+    [data-ws-hero-shade] { display: none !important; }
+    [data-ws-photo] { aspect-ratio: auto !important; }
+    [data-ws-photo] img { height: auto !important; object-fit: contain !important; }
+    [data-ws-photo] [data-ws-tag] { position: static !important; display: block !important; }
+    [data-ws-hero-media] { background: transparent !important; }
+    [data-ws-hero-media]::after { content: ""; position: absolute; left: 0; right: 0; bottom: -1px; height: 26%; background: linear-gradient(to bottom, rgba(14,36,56,0) 0%, rgba(14,36,56,0.35) 45%, rgba(14,36,56,0.8) 80%, #0E2438 100%); pointer-events: none; }
+    [data-ws-hero-media]::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 10%; background: linear-gradient(to top, rgba(14,36,56,0), rgba(14,36,56,0.45)); pointer-events: none; z-index: 1; }
+    [data-ws-photo] { padding: 6px !important; background: #16394F !important; border: 1px solid rgba(177,205,198,0.35) !important; box-shadow: 0 14px 30px -12px rgba(0,0,0,0.6) !important; }
+  }
 </style>
 </helmet>
 
@@ -35,17 +48,17 @@
 
   <dc-import name="SiteHeader" active="home" style="position:sticky;top:0;z-index:50;display:block" hint-size="100%,74px"></dc-import>
 
-  <section id="top" style="position:relative;min-height:min(96vh,1000px);display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden;border-bottom:1px solid rgba(252,252,237,0.1)">
-    <div style="position:absolute;inset:0;background:#123046">
+  <section id="top" data-ws-hero="1" style="position:relative;min-height:min(96vh,1000px);display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden;border-bottom:1px solid rgba(252,252,237,0.1)">
+    <div data-ws-hero-media="1" style="position:absolute;inset:0;background:#123046">
       <img src="./assets/hero-crew-truck-2.png" alt="Wastely crew in high-visibility jackets in front of the company truck" style="width:100%;height:100%;object-fit:cover;object-position:center 40%;display:block;filter:saturate(0.9) contrast(1.02)" />
     </div>
-    <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(14,36,56,0.97) 0%,rgba(14,36,56,0.92) 34%,rgba(14,36,56,0.66) 62%,rgba(14,36,56,0.34) 100%)"></div>
-    <div style="position:absolute;inset:0;background:linear-gradient(to right,rgba(14,36,56,0.3) 0%,rgba(14,36,56,0.12) 45%,rgba(14,36,56,0) 70%)"></div>
+    <div data-ws-hero-shade="1" style="position:absolute;inset:0;background:linear-gradient(to top,rgba(14,36,56,0.97) 0%,rgba(14,36,56,0.92) 34%,rgba(14,36,56,0.66) 62%,rgba(14,36,56,0.34) 100%)"></div>
+    <div data-ws-hero-shade="1" style="position:absolute;inset:0;background:linear-gradient(to right,rgba(14,36,56,0.3) 0%,rgba(14,36,56,0.12) 45%,rgba(14,36,56,0) 70%)"></div>
 
     <div style="position:relative;padding:clamp(56px,8vw,110px) clamp(16px,4vw,56px) clamp(26px,3vw,40px);max-width:1440px;width:100%;margin:0 auto">
       <div style="display:flex;align-items:center;gap:14px;margin-bottom:clamp(22px,3vw,34px)">
         <span style="width:30px;height:1px;background:#B1CDC6"></span>
-        <span style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:#B1CDC6">Commercial Waste · Hazardous Disposal · Fully Insured · Ontario · 24/7</span>
+        <span style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:#B1CDC6">Commercial Waste · Hazardous Disposal · Fully Insured · Ontario</span>
       </div>
       <h1 style="margin:0;font-family:Inter,sans-serif;font-weight:800;font-size:clamp(34px,6.2vw,98px);line-height:0.92;letter-spacing:-0.032em;text-transform:uppercase;text-wrap:balance">
         Your waste<br><span style="color:#B1CDC6">solution.</span>
@@ -53,7 +66,7 @@
       <div style="display:flex;flex-wrap:wrap;gap:clamp(24px,4vw,64px);align-items:flex-end;margin-top:clamp(28px,4vw,48px)">
         <p style="margin:0;max-width:600px;font-size:clamp(16px,1.3vw,20px);line-height:1.6;color:#C3D2DB">Asbestos and mould removal, estate and full-house cleanouts, community housing turnovers, bulk load-out and land clearing and remediation, anywhere in Ontario. One account, one number, one set of manifests.</p>
         <div style="display:flex;flex-wrap:wrap;gap:12px">
-          <a href="tel:+13434631909" style="display:inline-block;padding:16px 30px;background:#B1CDC6;color:#0E2438;font-family:Inter,sans-serif;font-weight:700;font-size:16px;letter-spacing:0.045em" style-hover="background:#D2E3DE">Call (343) 463-1909</a>
+          <a href="tel:+13438011914" style="display:inline-block;padding:16px 30px;background:#B1CDC6;color:#0E2438;font-family:Inter,sans-serif;font-weight:700;font-size:16px;letter-spacing:0.045em" style-hover="background:#D2E3DE">Call (343) 801-1914</a>
           <a href="Services.dc.html" style="display:inline-block;padding:16px 30px;border:1px solid rgba(252,252,237,0.22);color:#FCFCED;font-family:Inter,sans-serif;font-weight:600;font-size:16px;letter-spacing:0.045em" style-hover="border-color:#B1CDC6;color:#B1CDC6">What we take away</a>
         </div>
       </div>
@@ -75,13 +88,12 @@
   <section style="background:#B1CDC6;color:#0E2438">
     <div style="max-width:1440px;margin:0 auto;padding:clamp(18px,2vw,26px) clamp(16px,4vw,56px);display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px">
       <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap">
-        <span style="display:flex;align-items:center;gap:9px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;font-weight:700"><img src="assets/wastely-icon-navy.png" alt="" style="width:24px;height:24px;display:block;animation:wsBeacon 1.6s ease-in-out infinite" />24/7 Emergency Response</span>
-        <span style="font-family:Inter,sans-serif;font-weight:800;font-size:clamp(22px,2.6vw,38px);line-height:1;letter-spacing:-0.03em;text-transform:uppercase;color:#0E2438">Whenever you need</span>
+        <span style="font-family:Inter,sans-serif;font-weight:800;font-size:clamp(22px,2.6vw,38px);line-height:1;letter-spacing:-0.03em;text-transform:uppercase;color:#0E2438">Text or call</span>
+        <span style="font-family:Inter,sans-serif;font-weight:700;font-size:clamp(17px,1.6vw,22px);letter-spacing:0.02em;color:#0E2438">(343) 801-1914</span>
       </div>
-      <div style="position:relative;display:inline-flex;flex-shrink:0">
-        <span style="position:absolute;inset:-9px;border:2px dashed rgba(14,36,56,0.45);animation:wsSpin 9s linear infinite;pointer-events:none"></span>
-        <span style="position:absolute;inset:-9px;border:2px solid rgba(14,36,56,0.5);animation:wsHalo 1.8s ease-out infinite;pointer-events:none"></span>
-        <a href="tel:+13434631909" style="position:relative;display:inline-flex;align-items:center;gap:11px;padding:17px 34px;background:#0E2438;color:#FCFCED;font-weight:800;font-size:clamp(17px,1.5vw,21px);letter-spacing:0.03em;text-transform:uppercase;white-space:nowrap;animation:wsPulse 1.8s ease-in-out infinite;transform-origin:center" style-hover="background:#14344F;color:#FCFCED;animation-play-state:paused"><span style="display:inline-block;font-size:21px;animation:wsRing 2.6s ease-in-out infinite;transform-origin:50% 55%">☎</span>Call now</a>
+      <div style="display:flex;flex-wrap:wrap;gap:10px">
+        <a href="sms:+13438011914" style="display:inline-flex;align-items:center;min-height:52px;padding:14px 30px;border:2px solid #0E2438;color:#0E2438;font-weight:800;font-size:clamp(16px,1.4vw,19px);letter-spacing:0.03em;text-transform:uppercase;text-decoration:none" style-hover="background:#0E2438;color:#FCFCED">Text us</a>
+        <a href="tel:+13438011914" style="display:inline-flex;align-items:center;min-height:52px;padding:14px 30px;background:#0E2438;border:2px solid #0E2438;color:#FCFCED;font-weight:800;font-size:clamp(16px,1.4vw,19px);letter-spacing:0.03em;text-transform:uppercase;text-decoration:none" style-hover="background:#14344F;color:#FCFCED">Call now</a>
       </div>
     </div>
   </section>
@@ -205,7 +217,7 @@
 
   <section style="background:#14344F;border-top:1px solid rgba(252,252,237,0.1);border-bottom:1px solid rgba(252,252,237,0.1);padding:clamp(64px,8vw,120px) clamp(16px,4vw,56px)">
     <div style="max-width:1440px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:clamp(32px,5vw,80px);align-items:center">
-      <div style="position:relative;width:100%;aspect-ratio:4/3;background:#16394F;border:1px solid rgba(252,252,237,0.11);overflow:hidden">
+      <div data-ws-photo="1" style="position:relative;width:100%;aspect-ratio:4/3;background:#16394F;border:1px solid rgba(252,252,237,0.11);overflow:hidden">
         <img src="./assets/clean-room.jpeg" alt="Stripped room swept clean and handed back" style="width:100%;height:100%;object-fit:cover;object-position:center 60%;display:block" />
       </div>
       <div>
@@ -251,13 +263,13 @@
         <h2 style="margin:0;font-family:Inter,sans-serif;font-weight:800;font-size:clamp(25px,2.9vw,43px);line-height:1;text-transform:uppercase">Suited up for the job</h2>
         <p style="margin:0;font-size:15px;color:#9AB0BE;line-height:1.65;max-width:40ch">Disposable coveralls, taped gloves and boots, half-face respirators and eye protection, matched to the material on site.</p>
       </div>
-      <div style="position:relative;aspect-ratio:3/4;overflow:hidden;border:1px solid rgba(252,252,237,0.11);background:#16394F">
+      <div data-ws-photo="1" style="position:relative;aspect-ratio:3/4;overflow:hidden;border:1px solid rgba(252,252,237,0.11);background:#16394F">
         <img src="./assets/gear-suit.jpeg" alt="Crew member in a disposable coverall, taped gloves and dust mask" style="width:100%;height:100%;object-fit:cover;object-position:center 40%;display:block" />
-        <span style="position:absolute;left:12px;bottom:12px;padding:6px 10px;background:#0E2438;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:#B1CDC6">Coverall · Gloves · Mask</span>
+        <span data-ws-tag="1" style="position:absolute;left:12px;bottom:12px;padding:6px 10px;background:#0E2438;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:#B1CDC6">Coverall · Gloves · Mask</span>
       </div>
-      <div style="position:relative;aspect-ratio:3/4;overflow:hidden;border:1px solid rgba(252,252,237,0.11);background:#16394F">
+      <div data-ws-photo="1" style="position:relative;aspect-ratio:3/4;overflow:hidden;border:1px solid rgba(252,252,237,0.11);background:#16394F">
         <img src="./assets/gear-respirator.jpeg" alt="Crew member in a half-face respirator and safety glasses" style="width:100%;height:100%;object-fit:cover;object-position:center 30%;display:block" />
-        <span style="position:absolute;left:12px;bottom:12px;padding:6px 10px;background:#0E2438;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:#B1CDC6">Respirator · Eye protection</span>
+        <span data-ws-tag="1" style="position:absolute;left:12px;bottom:12px;padding:6px 10px;background:#0E2438;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:#B1CDC6">Respirator · Eye protection</span>
       </div>
     </div>
   </section>
@@ -271,17 +283,17 @@
       </div>
       <h2 style="margin:0 0 clamp(20px,2vw,28px);font-family:Inter,sans-serif;font-weight:800;font-size:clamp(26px,3.3vw,48px);line-height:0.98;text-transform:uppercase">Our story</h2>
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:clamp(20px,3vw,56px);align-items:end;margin-bottom:clamp(28px,3vw,44px)">
-        <p style="margin:0;font-size:clamp(16px,1.25vw,19px);color:#C9D6DC;line-height:1.7;max-width:60ch;text-wrap:pretty">We are young men dedicated to diverting waste from the landfill. Every job gets sorted by stream, and because we get paid for the material we recover, that sorting brings the cost of getting rid of your waste down.</p>
+        <p style="margin:0;font-size:clamp(16px,1.25vw,19px);color:#C9D6DC;line-height:1.7;max-width:60ch;text-wrap:pretty">We are a young, ambitious team that started as a local company doing small jobs. We love this industry and the people we work for, and we set out to give every customer a better experience than they have ever had, run professionally from the first call to the final load. We are also dedicated to diverting waste from the landfill. Every job gets sorted by stream, and because we get paid for the material we recover, that sorting brings the cost of getting rid of your waste down.</p>
         <div style="display:flex;align-items:baseline;gap:16px;padding-top:18px;border-top:1px solid #B1CDC6">
           <span style="font-family:Inter,sans-serif;font-weight:800;font-size:clamp(44px,5vw,72px);line-height:0.9;letter-spacing:-0.04em;color:#B1CDC6">90%</span>
           <span style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#AEC1CD;line-height:1.6">Waste diversion<br />target by 2028</span>
         </div>
       </div>
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:clamp(12px,1.5vw,20px)">
-        <div style="aspect-ratio:4/5;overflow:hidden;border:1px solid rgba(252,252,237,0.11);background:#16394F">
+        <div data-ws-photo="1" style="aspect-ratio:4/5;overflow:hidden;border:1px solid rgba(252,252,237,0.11);background:#16394F">
           <img src="./assets/team-portrait.jpeg" alt="The Wastely owners on a job site" style="width:100%;height:100%;object-fit:cover;object-position:center 35%;display:block" />
         </div>
-        <div style="aspect-ratio:4/5;overflow:hidden;border:1px solid rgba(252,252,237,0.11);background:#16394F">
+        <div data-ws-photo="1" style="aspect-ratio:4/5;overflow:hidden;border:1px solid rgba(252,252,237,0.11);background:#16394F">
           <img src="./assets/team-work.jpeg" alt="The Wastely owners loading debris into a wheelbarrow" style="width:100%;height:100%;object-fit:cover;object-position:center 40%;display:block" />
         </div>
       </div>
@@ -329,7 +341,7 @@
         </div>
         <h2 style="margin:0 0 24px;font-family:Inter,sans-serif;font-weight:800;font-size:clamp(28px,3.9vw,62px);line-height:0.94;text-transform:uppercase;max-width:16ch;letter-spacing:-0.03em">Something needs to go?</h2>
         <p style="margin:0 0 32px;font-size:clamp(16px,1.3vw,19px);color:#AEC1CD;line-height:1.65;max-width:560px">Answer five questions and the form prices the job in front of you: what the Ontario market charges for that scope, and our number, which runs about 30% under it. Then send the details and an owner confirms it in writing.</p>
-        <a href="tel:+13434631909" style="display:inline-block;padding:17px 34px;background:#B1CDC6;color:#0E2438;font-family:Inter,sans-serif;font-weight:700;font-size:clamp(16px,1.2vw,19px);letter-spacing:0.035em" style-hover="background:#D2E3DE">Call (343) 463-1909</a>
+        <a href="tel:+13438011914" style="display:inline-block;padding:17px 34px;background:#B1CDC6;color:#0E2438;font-family:Inter,sans-serif;font-weight:700;font-size:clamp(16px,1.2vw,19px);letter-spacing:0.035em" style-hover="background:#D2E3DE">Call (343) 801-1914</a>
         <div style="margin-top:34px;display:flex;flex-direction:column;gap:14px">
           <sc-for list="{{ quoteAssurances }}" as="a" hint-placeholder-count="3">
             <div style="display:flex;align-items:baseline;gap:12px">
@@ -491,18 +503,6 @@
     </div>
   </section>
 
-  <section id="support" style="scroll-margin-top:86px;background:#0E2438;border-top:1px solid rgba(252,252,237,0.1);padding:clamp(40px,5vw,72px) clamp(16px,4vw,56px)">
-    <div style="max-width:1440px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:clamp(24px,4vw,64px);align-items:center">
-      <div style="display:flex;flex-direction:column;gap:14px">
-        <span style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:#B1CDC6">Support</span>
-        <h2 style="margin:0;font-family:Inter,sans-serif;font-weight:800;font-size:clamp(25px,2.9vw,43px);line-height:1;text-transform:uppercase;max-width:20ch">Help us clean up illegal dumping</h2>
-        <p style="margin:0;font-size:16px;color:#9AB0BE;line-height:1.7;max-width:58ch;text-wrap:pretty">We are raising money on GoFundMe, and any amount helps. 100% of the proceeds go to cleaning up illegal dumping and waste in your local parks, forests and green spaces.</p>
-      </div>
-      <div style="display:flex;flex-wrap:wrap;gap:12px;justify-content:flex-start">
-        <a href="https://www.gofundme.com/" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:10px;min-height:52px;padding:14px 26px;background:#B1CDC6;color:#0E2438;text-decoration:none;font-weight:700;font-size:16px;letter-spacing:0.02em;text-transform:uppercase" style-hover="background:#FCFCED">Donate on GoFundMe <span style="font-size:18px">→</span></a>
-      </div>
-    </div>
-  </section>
 
   <dc-import name="SiteFooter" hint-size="100%,360px"></dc-import>
 </div>
@@ -536,7 +536,7 @@ class Component extends DCLogic {
   FILL = { 'Light — a few rooms': 0.75, 'Normal contents': 1, 'Packed — full to the walls': 1.4, 'Hoarding or biohazard': 1.9 };
   ACCESS = { 'Ground level, truck at the door': 1, 'Elevator building': 1.1, 'Stairs or walk-up': 1.18, 'Occupied or restricted site': 1.3 };
   SPEED = { 'Standard — two weeks or more': 1, 'Within a week': 1.12, '24–48 hour emergency': 1.4 };
-  MIN = 5000;
+  MIN = 2500;
   overlayRef = React.createRef();
   formRef = React.createRef();
   componentDidMount() {
@@ -628,7 +628,7 @@ class Component extends DCLogic {
         { dest: 'Landfill', title: 'The Residual 25 – 30%', body: 'Contaminated, mixed and unrecoverable material — the only portion that gets tipped, weighed and reported to you honestly.' }
       ],
       proof: [
-        { value: '24/7', label: 'Dispatch answered live, including overnight and weekends' },
+        { value: 'Text or call', label: 'An owner answers, with a same-day reply' },
         { value: '100+', label: 'Commercial accounts served' },
         { value: 'Licensed', label: 'Hazardous and regulated waste handled under manifest' },
         { value: 'Ontario', label: 'Toronto, Ottawa, Kingston and province-wide' }
