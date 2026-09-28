@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" type="image/png" href="assets/wastely-icon-navy.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: #0E2438; -webkit-font-smoothing: antialiased; }
+  a { color: #B1CDC6; text-decoration: none; }
+  a:hover { color: #D2E3DE; }
+  ::selection { background: #B1CDC6; color: #0E2438; }
+</style>
+</helmet>
+
+<div style="background:#0E2438;color:#FCFCED;font-family:Inter,system-ui,sans-serif;font-weight:300;font-size:17px;line-height:1.6;overflow-x:hidden">
+  <dc-import name="SiteHeader" active="questions" style="position:sticky;top:0;z-index:50;display:block" hint-size="100%,74px"></dc-import>
+
+  <section style="padding:clamp(56px,7vw,110px) clamp(16px,4vw,56px) clamp(32px,4vw,56px);max-width:1440px;margin:0 auto;border-bottom:1px solid rgba(252,252,237,0.1)">
+    <div style="display:flex;align-items:center;gap:14px;margin-bottom:26px">
+      <span style="width:30px;height:1px;background:#B1CDC6"></span>
+      <span style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:#B1CDC6">Questions</span>
+    </div>
+    <h1 style="margin:0;font-family:Inter,sans-serif;font-weight:800;font-size:clamp(31px,5.2vw,84px);line-height:0.92;text-transform:uppercase;letter-spacing:-0.032em;max-width:14ch">Asked before every job</h1>
+  </section>
+
+  <section style="padding:clamp(32px,4vw,64px) clamp(16px,4vw,56px) clamp(56px,7vw,100px);max-width:960px;margin:0 auto">
+    <div style="display:flex;flex-direction:column">
+      <sc-for list="{{ faqs }}" as="f" hint-placeholder-count="7">
+        <div style="display:flex;align-items:baseline;gap:18px;padding:22px 0;border-bottom:1px solid rgba(252,252,237,0.1)">
+          <span style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:10px;letter-spacing:0.16em;color:#86A0AF;flex-shrink:0;width:24px">{{ f.num }}</span>
+          <div>
+            <h2 style="margin:0;font-weight:700;font-size:clamp(17px,1.4vw,21px);color:#FCFCED;line-height:1.35">{{ f.q }}</h2>
+            <p style="margin:8px 0 0;font-size:15.5px;color:#9AB0BE;line-height:1.65;text-wrap:pretty">{{ f.a }}</p>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;margin-top:clamp(32px,4vw,48px);padding:clamp(20px,2.4vw,30px);background:#14344F;border:1px solid rgba(252,252,237,0.11)">
+      <span style="font-family:Inter,sans-serif;font-weight:700;font-size:clamp(17px,1.5vw,22px);text-transform:uppercase">Still have a question?</span>
+      <div style="display:flex;flex-wrap:wrap;gap:10px">
+        <a href="Wastely.dc.html#quote" style="display:inline-flex;align-items:center;min-height:48px;padding:12px 22px;background:#B1CDC6;color:#0E2438;font-weight:700;font-size:15px;letter-spacing:0.02em;text-transform:uppercase" style-hover="background:#FCFCED">Get a price</a>
+        <a href="mailto:go@wastely.ca" style="display:inline-flex;align-items:center;min-height:48px;padding:12px 22px;border:1px solid rgba(252,252,237,0.2);color:#FCFCED;font-weight:600;font-size:15px" style-hover="border-color:#B1CDC6">go@wastely.ca</a>
+      </div>
+    </div>
+  </section>
+
+  <dc-import name="SiteFooter" hint-size="100%,360px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      faqs: [
+        { num: '01', q: 'Do you do construction or restoration work?', a: 'No. We remove, demolish, clear and dispose. We do not build, repair or restore, which means we are never quoting the rebuild we just created work for.' },
+        { num: '02', q: 'Can one company really take all of our streams?', a: 'That is the reason we exist. Asbestos, mould, hazardous streams, bulk load-out and full property cleanouts run on one account with one contact, rather than four vendors who each handle a slice.' },
+        { num: '03', q: 'How are you different from a national hauler?', a: 'Same licensing and documentation, without the call centre. You get an owner on the phone, and pricing that is not built around a national account structure you do not fit.' },
+        { num: '04', q: 'Do you respond outside business hours?', a: 'Yes. Dispatch is answered 24 hours a day. A load down across a lot at 2am, or a unit that has to be cleared before a Monday inspection, is a normal call rather than an exception.' },
+        { num: '05', q: 'Will the paperwork satisfy an auditor or a tender?', a: 'Manifests, weigh tickets, diversion tonnage and clearance certificates are supplied as one package, in a form you can pass upward without rewriting it.' },
+        { num: '06', q: 'Are you insured?', a: 'Fully insured, with current WSIB clearance. Certificates and training records are sent as a vendor package on request, before we mobilize rather than after you ask.' },
+        { num: '07', q: 'Do you rent out bins?', a: 'No. We are not a bin rental company. Where a job needs containers we arrange them through local haulers as part of the scope, so the bin on your property is one line on our quote rather than a rental you manage.' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>
