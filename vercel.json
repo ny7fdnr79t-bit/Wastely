@@ -1,10 +1,201 @@
 {
+  "cleanUrls": false,
   "redirects": [
-    { "source": "/junk-removal", "destination": "/Services.dc.html", "permanent": true },
-    { "source": "/furniture-removal", "destination": "/Services.dc.html", "permanent": true },
-    { "source": "/cleanouts", "destination": "/estate-cleanout.dc.html", "permanent": true }
+    {
+      "source": "/Wastely.dc.html",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/index.html",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/Careers.dc.html",
+      "destination": "/careers",
+      "permanent": true
+    },
+    {
+      "source": "/Contact.dc.html",
+      "destination": "/contact",
+      "permanent": true
+    },
+    {
+      "source": "/Questions.dc.html",
+      "destination": "/questions",
+      "permanent": true
+    },
+    {
+      "source": "/Safety.dc.html",
+      "destination": "/safety",
+      "permanent": true
+    },
+    {
+      "source": "/Services.dc.html",
+      "destination": "/services",
+      "permanent": true
+    },
+    {
+      "source": "/Thanks.dc.html",
+      "destination": "/thanks",
+      "permanent": true
+    },
+    {
+      "source": "/asbestos-removal.dc.html",
+      "destination": "/asbestos-removal",
+      "permanent": true
+    },
+    {
+      "source": "/bulk-waste-load-out.dc.html",
+      "destination": "/bulk-waste-load-out",
+      "permanent": true
+    },
+    {
+      "source": "/community-housing-turnover.dc.html",
+      "destination": "/community-housing-turnover",
+      "permanent": true
+    },
+    {
+      "source": "/e-waste.dc.html",
+      "destination": "/e-waste",
+      "permanent": true
+    },
+    {
+      "source": "/estate-cleanout.dc.html",
+      "destination": "/estate-cleanout",
+      "permanent": true
+    },
+    {
+      "source": "/hazardous-waste.dc.html",
+      "destination": "/hazardous-waste",
+      "permanent": true
+    },
+    {
+      "source": "/industrial-dismantling.dc.html",
+      "destination": "/industrial-dismantling",
+      "permanent": true
+    },
+    {
+      "source": "/interior-strip-out.dc.html",
+      "destination": "/interior-strip-out",
+      "permanent": true
+    },
+    {
+      "source": "/land-clearing.dc.html",
+      "destination": "/land-clearing",
+      "permanent": true
+    },
+    {
+      "source": "/lithium-battery-disposal.dc.html",
+      "destination": "/lithium-battery-disposal",
+      "permanent": true
+    },
+    {
+      "source": "/mould-removal.dc.html",
+      "destination": "/mould-removal",
+      "permanent": true
+    },
+    {
+      "source": "/oil-fuel-chemical-disposal.dc.html",
+      "destination": "/oil-fuel-chemical-disposal",
+      "permanent": true
+    },
+    {
+      "source": "/recycling-diversion.dc.html",
+      "destination": "/recycling-diversion",
+      "permanent": true
+    },
+    {
+      "source": "/warehouse-facility-clearouts.dc.html",
+      "destination": "/warehouse-facility-clearouts",
+      "permanent": true
+    }
   ],
   "rewrites": [
-    { "source": "/", "destination": "/Wastely.dc.html" }
+    {
+      "source": "/",
+      "destination": "/Wastely.dc.html"
+    },
+    {
+      "source": "/careers",
+      "destination": "/Careers.dc.html"
+    },
+    {
+      "source": "/contact",
+      "destination": "/Contact.dc.html"
+    },
+    {
+      "source": "/questions",
+      "destination": "/Questions.dc.html"
+    },
+    {
+      "source": "/safety",
+      "destination": "/Safety.dc.html"
+    },
+    {
+      "source": "/services",
+      "destination": "/Services.dc.html"
+    },
+    {
+      "source": "/thanks",
+      "destination": "/Thanks.dc.html"
+    },
+    {
+      "source": "/asbestos-removal",
+      "destination": "/asbestos-removal.dc.html"
+    },
+    {
+      "source": "/bulk-waste-load-out",
+      "destination": "/bulk-waste-load-out.dc.html"
+    },
+    {
+      "source": "/community-housing-turnover",
+      "destination": "/community-housing-turnover.dc.html"
+    },
+    {
+      "source": "/e-waste",
+      "destination": "/e-waste.dc.html"
+    },
+    {
+      "source": "/estate-cleanout",
+      "destination": "/estate-cleanout.dc.html"
+    },
+    {
+      "source": "/hazardous-waste",
+      "destination": "/hazardous-waste.dc.html"
+    },
+    {
+      "source": "/industrial-dismantling",
+      "destination": "/industrial-dismantling.dc.html"
+    },
+    {
+      "source": "/interior-strip-out",
+      "destination": "/interior-strip-out.dc.html"
+    },
+    {
+      "source": "/land-clearing",
+      "destination": "/land-clearing.dc.html"
+    },
+    {
+      "source": "/lithium-battery-disposal",
+      "destination": "/lithium-battery-disposal.dc.html"
+    },
+    {
+      "source": "/mould-removal",
+      "destination": "/mould-removal.dc.html"
+    },
+    {
+      "source": "/oil-fuel-chemical-disposal",
+      "destination": "/oil-fuel-chemical-disposal.dc.html"
+    },
+    {
+      "source": "/recycling-diversion",
+      "destination": "/recycling-diversion.dc.html"
+    },
+    {
+      "source": "/warehouse-facility-clearouts",
+      "destination": "/warehouse-facility-clearouts.dc.html"
+    }
   ]
 }

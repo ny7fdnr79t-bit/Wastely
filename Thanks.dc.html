@@ -61,7 +61,7 @@ class Component extends DCLogic {
     const careers = this.from() === 'careers';
     const back = new URLSearchParams(location.search).get('back');
     return {
-      againHref: back && /^[\w.-]*\.(dc\.)?html(\?.*)?$|^$/.test(back) && back ? back : 'Wastely.dc.html',
+      againHref: back && /^[\w-]+(\.dc\.html|\.html)?(\?.*)?$/.test(back) ? '/' + back : '/',
       againLabel: careers ? 'Send another application' : 'Send another request',
       isQuote: !careers,
       eyebrow: careers ? 'Application received' : 'Request received',
