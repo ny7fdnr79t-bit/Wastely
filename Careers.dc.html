@@ -23,6 +23,7 @@
   ::selection { background: #B1CDC6; color: #0E2438; }
   input::placeholder, textarea::placeholder { color: #93ABB8; }
 </style>
+<script src="./transition.js"></script>
 </helmet>
 
 <div style="background:#0E2438;color:#FCFCED;font-family:Inter,system-ui,sans-serif;font-weight:300;font-size:17px;line-height:1.6;overflow-x:hidden">
@@ -41,9 +42,6 @@
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:clamp(28px,4vw,72px);align-items:start">
       <div>
         <h2 style="margin:0 0 22px;font-family:Inter,sans-serif;font-weight:800;font-size:clamp(24px,2.7vw,40px);line-height:1;text-transform:uppercase;max-width:14ch">What it is like here</h2>
-        <div style="position:relative;width:100%;aspect-ratio:4/3;background:#16394F;border:1px solid rgba(252,252,237,0.11);margin-top:28px">
-          <image-slot id="ws-careers-1" shape="rect" placeholder="Crew on site — working shot"></image-slot>
-        </div>
       </div>
       <div style="display:flex;flex-direction:column">
         <sc-for list="{{ values }}" as="v" hint-placeholder-count="5">
@@ -135,7 +133,7 @@ class Component extends DCLogic {
     return {
       sent: this.state.sent,
       submitLabel: this.state.sent ? 'Application sent' : 'Send application',
-      onSubmit: (e) => { e.preventDefault(); const f = e.target; const d = { _subject: 'Wastely website: ' + (document.title || 'enquiry'), _template: 'table', _captcha: 'false', page: location.href }; f.querySelectorAll('input,select,textarea').forEach((el, i) => { const lb = el.closest('label'); const sp = lb && lb.querySelector('span'); if (el.type === 'checkbox') { if (el.checked) d['confirmed'] = lb ? lb.textContent.trim() : 'yes'; return; } if (!el.value) return; d[el.name || (sp && sp.textContent.trim()) || el.placeholder || ('field ' + i)] = el.value; }); const picked = Array.from(f.querySelectorAll('button[aria-pressed="true"]')).map(b => b.textContent.replace('\u2713', '').trim()); if (picked.length) d.services = picked.join(', '); const go = () => { location.href = 'Thanks.dc.html?from=careers&back=' + encodeURIComponent(location.pathname.split('/').pop() + location.search); }; fetch('https://formsubmit.co/ajax/go@wastely.ca', { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify(d) }).catch(() => {}).then(go); this.setState({ sent: true }); window.addEventListener('pageshow', (ev) => { if (ev.persisted) { f.reset(); this.setState({ sent: false }); } }, { once: true }); setTimeout(go, 2500); },
+      onSubmit: (e) => { e.preventDefault(); const f = e.target; const d = { _subject: 'Wastely website: ' + (document.title || 'enquiry'), _template: 'table', _captcha: 'false', page: location.href }; f.querySelectorAll('input,select,textarea').forEach((el, i) => { const lb = el.closest('label'); const sp = lb && lb.querySelector('span'); if (el.type === 'checkbox') { if (el.checked) d['confirmed'] = lb ? lb.textContent.trim() : 'yes'; return; } if (!el.value) return; d[el.name || (sp && sp.textContent.trim()) || el.placeholder || ('field ' + i)] = el.value; }); const picked = Array.from(f.querySelectorAll('button[aria-pressed="true"]')).map(b => b.textContent.replace('\u2713', '').trim()); if (picked.length) d.services = picked.join(', '); const dest = 'Thanks.dc.html?from=careers&back=' + encodeURIComponent(location.pathname.split('/').pop() + location.search); const go = () => { if (window.wsSubmit) window.wsSubmit.go(dest); else location.href = dest; }; if (window.wsSubmit) window.wsSubmit.start(); fetch('https://formsubmit.co/ajax/go@wastely.ca', { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify(d) }).catch(() => {}).then(go); window.addEventListener('pageshow', (ev) => { if (ev.persisted) { f.reset(); this.setState({ sent: false }); } }, { once: true }); setTimeout(go, 4000); },
       values: [
         { title: 'Paid properly, paid on time', body: 'Rates set against what you can actually run, and cheques that do not need chasing.' },
         { title: 'Owners on site', body: 'You are not managed by someone who has never operated a machine. Roman is in the field with the crew.' },

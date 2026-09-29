@@ -23,6 +23,7 @@
   ::selection { background: #B1CDC6; color: #0E2438; }
   input::placeholder, textarea::placeholder { color: #93ABB8; }
 </style>
+<script src="./transition.js"></script>
 </helmet>
 
 <div style="background:#0E2438;color:#FCFCED;font-family:Inter,system-ui,sans-serif;font-weight:300;font-size:17px;line-height:1.6;overflow-x:hidden">
@@ -52,9 +53,6 @@
             <div style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:#728B9C;margin-bottom:7px">Email</div>
             <a href="mailto:go@wastely.ca" style="font-family:Inter,sans-serif;font-weight:700;font-size:clamp(17px,1.35vw,21px);letter-spacing:0.02em;color:#FCFCED" style-hover="color:#B1CDC6">go@wastely.ca</a>
           </div>
-        </div>
-        <div style="position:relative;width:100%;aspect-ratio:4/3;background:#16394F;border:1px solid rgba(252,252,237,0.11)">
-          <image-slot id="ws-contact-1" shape="rect" placeholder="Roman and co-owner — team photo"></image-slot>
         </div>
       </div>
 
@@ -139,7 +137,7 @@ class Component extends DCLogic {
       scopeChips: this.SCOPES.map(sc => ({ label: sc, on: p.includes(sc), off: !p.includes(sc), toggle: () => this.setState(st => ({ picked: st.picked.includes(sc) ? st.picked.filter(x => x !== sc) : st.picked.concat(sc) })) })),
       sent: this.state.sent,
       submitLabel: this.state.sent ? 'Details sent' : 'Send project details',
-      onSubmit: (e) => { e.preventDefault(); const f = e.target; const d = { _subject: 'Wastely website: ' + (document.title || 'enquiry'), _template: 'table', _captcha: 'false', page: location.href }; f.querySelectorAll('input,select,textarea').forEach((el, i) => { const lb = el.closest('label'); const sp = lb && lb.querySelector('span'); if (el.type === 'checkbox') { if (el.checked) d['confirmed'] = lb ? lb.textContent.trim() : 'yes'; return; } if (!el.value) return; d[el.name || (sp && sp.textContent.trim()) || el.placeholder || ('field ' + i)] = el.value; }); const picked = Array.from(f.querySelectorAll('button[aria-pressed="true"]')).map(b => b.textContent.replace('\u2713', '').trim()); if (picked.length) d.services = picked.join(', '); const go = () => { location.href = 'Thanks.dc.html?back=' + encodeURIComponent(location.pathname.split('/').pop() + location.search); }; fetch('https://formsubmit.co/ajax/go@wastely.ca', { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify(d) }).catch(() => {}).then(go); this.setState({ sent: true }); window.addEventListener('pageshow', (ev) => { if (ev.persisted) { f.reset(); this.setState({ sent: false }); } }, { once: true }); setTimeout(go, 2500); },
+      onSubmit: (e) => { e.preventDefault(); const f = e.target; const d = { _subject: 'Wastely website: ' + (document.title || 'enquiry'), _template: 'table', _captcha: 'false', page: location.href }; f.querySelectorAll('input,select,textarea').forEach((el, i) => { const lb = el.closest('label'); const sp = lb && lb.querySelector('span'); if (el.type === 'checkbox') { if (el.checked) d['confirmed'] = lb ? lb.textContent.trim() : 'yes'; return; } if (!el.value) return; d[el.name || (sp && sp.textContent.trim()) || el.placeholder || ('field ' + i)] = el.value; }); const picked = Array.from(f.querySelectorAll('button[aria-pressed="true"]')).map(b => b.textContent.replace('\u2713', '').trim()); if (picked.length) d.services = picked.join(', '); const dest = 'Thanks.dc.html?back=' + encodeURIComponent(location.pathname.split('/').pop() + location.search); const go = () => { if (window.wsSubmit) window.wsSubmit.go(dest); else location.href = dest; }; if (window.wsSubmit) window.wsSubmit.start(); fetch('https://formsubmit.co/ajax/go@wastely.ca', { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify(d) }).catch(() => {}).then(go); window.addEventListener('pageshow', (ev) => { if (ev.persisted) { f.reset(); this.setState({ sent: false }); } }, { once: true }); setTimeout(go, 4000); },
       details: [
         { label: 'Scheduled service', value: 'Monday to Saturday, 7am to 6pm' },
         { label: 'Emergency dispatch', value: '24 hours, answered live' },

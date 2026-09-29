@@ -17,7 +17,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; }
-  body { margin: 0; background: #0E2438; -webkit-font-smoothing: antialiased; }
+  body { margin: 0; background: #0E2438; -webkit-font-smoothing: antialiased; animation: wsIn .7s cubic-bezier(.2,.7,.2,1) both; }
+  @keyframes wsIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
   a { color: #B1CDC6; text-decoration: none; }
   a:hover { color: #D2E3DE; }
   ::selection { background: #B1CDC6; color: #0E2438; }
