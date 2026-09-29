@@ -8,6 +8,15 @@
 <body>
 <x-dc>
 <helmet>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-16825129496"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'AW-16825129496');
+</script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="icon" type="image/png" href="assets/wastely-icon-navy.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -36,6 +45,69 @@
     </div>
     <h1 style="margin:0 0 30px;font-family:Inter,sans-serif;font-weight:800;font-size:clamp(31px,5.2vw,84px);line-height:0.92;text-transform:uppercase;letter-spacing:-0.032em;max-width:13ch">Work for the owners</h1>
     <p style="margin:0;max-width:640px;font-size:clamp(16px,1.3vw,20px);color:#AEC1CD;line-height:1.7">No layers between you and the people who run the company. If you take the work seriously and leave a site better than you found it, we want to hear from you.</p>
+  </section>
+
+  <section id="crew" style="scroll-margin-top:86px;background:#14344F;border-bottom:1px solid rgba(252,252,237,0.1);padding:clamp(56px,7vw,110px) clamp(16px,4vw,56px)">
+    <div style="max-width:1440px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:clamp(32px,5vw,80px);align-items:start">
+      <div>
+        <div style="display:flex;align-items:center;gap:14px;margin-bottom:22px">
+          <span style="width:30px;height:1px;background:#B1CDC6"></span>
+          <span style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:#B1CDC6">Labour</span>
+        </div>
+        <h2 style="margin:0 0 24px;font-family:Inter,sans-serif;font-weight:800;font-size:clamp(28px,3.6vw,56px);line-height:0.95;text-transform:uppercase;letter-spacing:-0.025em;max-width:12ch">Join the Wastely standby crew</h2>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:26px">
+          <span style="border:1px solid #B1CDC6;color:#B1CDC6;padding:6px 12px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase">$25 / hour</span>
+          <span style="border:1px solid #B1CDC6;color:#B1CDC6;padding:6px 12px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase">Standby, not full-time</span>
+          <span style="border:1px solid #B1CDC6;color:#B1CDC6;padding:6px 12px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase">Jobs by text</span>
+          <span style="border:1px solid #B1CDC6;color:#B1CDC6;padding:6px 12px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase">Ottawa</span>
+        </div>
+        <p style="margin:0;max-width:520px;font-size:clamp(16px,1.3vw,19px);color:#AEC1CD;line-height:1.7">We text crew members when a job is scheduled: estate and property cleanouts, warehouse cleanouts, strip-outs and more. Reliable crew get first call and more hours as we grow.</p>
+      </div>
+      <div style="background:#0E2438;border:1px solid rgba(252,252,237,0.11);padding:clamp(24px,3vw,44px)">
+        <sc-if value="{{ crewShowForm }}" hint-placeholder-val="{{ true }}">
+          <form onSubmit="{{ crewSubmit }}" style="display:flex;flex-direction:column;gap:18px">
+            <label style="display:flex;flex-direction:column;gap:8px">
+              <span style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:#829AAA">Full name</span>
+              <input type="text" required="" value="{{ crewName }}" onChange="{{ crewNameChange }}" autocomplete="name" style="background:#16394F;border:1px solid rgba(252,252,237,0.14);color:#FCFCED;font-family:Inter,sans-serif;font-weight:300;font-size:16px;padding:13px 14px;outline:none" style-focus="border-color:#B1CDC6" />
+            </label>
+            <label style="display:flex;flex-direction:column;gap:8px">
+              <span style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:#829AAA">Mobile number for job texts</span>
+              <input type="tel" required="" value="{{ crewPhone }}" onChange="{{ crewPhoneChange }}" autocomplete="tel" style="background:#16394F;border:1px solid rgba(252,252,237,0.14);color:#FCFCED;font-family:Inter,sans-serif;font-weight:300;font-size:16px;padding:13px 14px;outline:none" style-focus="border-color:#B1CDC6" />
+            </label>
+            <label style="display:flex;flex-direction:column;gap:8px">
+              <span style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:#829AAA">City or zip</span>
+              <input type="text" value="{{ crewArea }}" onChange="{{ crewAreaChange }}" placeholder="e.g. Kanata, Orléans, K2P" style="background:#16394F;border:1px solid rgba(252,252,237,0.14);color:#FCFCED;font-family:Inter,sans-serif;font-weight:300;font-size:16px;padding:13px 14px;outline:none" style-focus="border-color:#B1CDC6" />
+            </label>
+            <div style="display:flex;flex-direction:column;gap:10px">
+              <span style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:#829AAA">When are you usually free?</span>
+              <div style="display:flex;flex-wrap:wrap;gap:8px">
+                <sc-for list="{{ crewFreeChips }}" as="c" hint-placeholder-count="3">
+                  <button type="button" aria-pressed="{{ c.pressed }}" onClick="{{ c.toggle }}" style="min-height:44px;padding:10px 16px;border:1px solid #B1CDC6;background:{{ c.bg }};color:{{ c.fg }};font-family:Inter,sans-serif;font-weight:500;font-size:15px;cursor:pointer">{{ c.label }}</button>
+                </sc-for>
+              </div>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:10px">
+              <span style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:#829AAA">Anything that helps</span>
+              <div style="display:flex;flex-wrap:wrap;gap:8px">
+                <sc-for list="{{ crewExtraChips }}" as="c" hint-placeholder-count="3">
+                  <button type="button" aria-pressed="{{ c.pressed }}" onClick="{{ c.toggle }}" style="min-height:44px;padding:10px 16px;border:1px solid #B1CDC6;background:{{ c.bg }};color:{{ c.fg }};font-family:Inter,sans-serif;font-weight:500;font-size:15px;cursor:pointer">{{ c.label }}</button>
+                </sc-for>
+              </div>
+            </div>
+            <button type="submit" disabled="{{ crewDisabled }}" style="margin-top:6px;padding:16px 28px;background:#B1CDC6;color:#0E2438;border:none;font-family:Inter,sans-serif;font-weight:700;font-size:16px;letter-spacing:0.045em;cursor:pointer;opacity:{{ crewBtnOpacity }}" style-hover="background:#D2E3DE">{{ crewBtnLabel }}</button>
+            <p style="margin:0;font-size:14px;color:#9AB0BE;line-height:1.6">No commitment. You can pass on any job. Reply STOP anytime to leave the list.</p>
+            <p style="margin:0;font-size:14px;color:#9AB0BE;line-height:1.6">Inquire at <a href="sms:+13438011914">(343) 801-1914</a> or <a href="mailto:roman@wastely.ca">roman@wastely.ca</a></p>
+          </form>
+        </sc-if>
+        <sc-if value="{{ crewDone }}" hint-placeholder-val="{{ false }}">
+          <div style="display:flex;flex-direction:column;gap:18px">
+            <h3 style="margin:0;font-family:Inter,sans-serif;font-weight:800;font-size:clamp(24px,2.4vw,36px);line-height:1;text-transform:uppercase;letter-spacing:-0.02em">You're on the list, {{ crewFirst }}</h3>
+            <p style="margin:0;font-size:16px;color:#AEC1CD;line-height:1.7">When a job is scheduled, we'll text you at {{ crewPhone }} with the date, location and hours. Reply to claim a spot.</p>
+            <p style="margin:0;font-size:16px;color:#AEC1CD;line-height:1.7">Want more work? Show up on time and work hard. Our most reliable crew members hear about new jobs first and get more hours as we grow.</p>
+          </div>
+        </sc-if>
+      </div>
+    </div>
   </section>
 
   <section style="padding:clamp(48px,6vw,96px) clamp(16px,4vw,56px);max-width:1440px;margin:0 auto">
@@ -128,9 +200,40 @@
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:430}}">
 class Component extends DCLogic {
-  state = { sent: false };
+  state = { sent: false, cName: '', cPhone: '', cArea: '', cFree: [], cExtra: [], cSending: false, cDone: false };
+  chips(opts, key) {
+    return opts.map(label => {
+      const on = this.state[key].includes(label);
+      return { label, pressed: on ? 'true' : 'false', bg: on ? '#B1CDC6' : 'transparent', fg: on ? '#0E2438' : '#FCFCED',
+        toggle: () => this.setState(s => ({ [key]: s[key].includes(label) ? s[key].filter(x => x !== label) : [...s[key], label] })) };
+    });
+  }
+  crewSubmit = (e) => {
+    e.preventDefault();
+    const s = this.state;
+    if (!s.cName.trim() || !s.cPhone.trim() || s.cSending) return;
+    this.setState({ cSending: true });
+    const d = { _subject: 'Wastely standby crew: ' + s.cName.trim(), _template: 'table', _captcha: 'false', name: s.cName.trim(), phone: s.cPhone.trim(), area: s.cArea.trim(), availability: s.cFree.join(', '), extras: s.cExtra.join(', '), submitted: new Date().toLocaleString('en-CA') };
+    const done = () => this.setState({ cSending: false, cDone: true });
+    fetch('https://formsubmit.co/ajax/roman@wastely.ca', { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify(d) })
+      .then(r => { if (r && r.ok) (window.dataLayer = window.dataLayer || []).push({ event: 'crew_signup', form_page: location.pathname }); })
+      .catch(() => {}).then(done);
+  };
   renderVals() {
+    const s = this.state;
+    const ready = s.cName.trim() && s.cPhone.trim() && !s.cSending;
     return {
+      crewName: s.cName, crewPhone: s.cPhone, crewArea: s.cArea,
+      crewNameChange: e => this.setState({ cName: e.target.value }),
+      crewPhoneChange: e => this.setState({ cPhone: e.target.value }),
+      crewAreaChange: e => this.setState({ cArea: e.target.value }),
+      crewFreeChips: this.chips(['Weekdays', 'Weekends', 'Short notice OK'], 'cFree'),
+      crewExtraChips: this.chips(['Have transportation', 'Moving experience', 'Can lift 50+ lbs'], 'cExtra'),
+      crewDisabled: !ready, crewBtnOpacity: ready ? 1 : 0.45,
+      crewBtnLabel: s.cSending ? 'Sending…' : 'Get the process started',
+      crewSubmit: this.crewSubmit,
+      crewShowForm: !s.cDone, crewDone: s.cDone,
+      crewFirst: s.cName.trim().split(/\s+/)[0],
       sent: this.state.sent,
       submitLabel: this.state.sent ? 'Application sent' : 'Send application',
       onSubmit: (e) => { e.preventDefault(); const f = e.target; const d = { _subject: 'Wastely website: ' + (document.title || 'enquiry'), _template: 'table', _captcha: 'false', page: location.href }; f.querySelectorAll('input,select,textarea').forEach((el, i) => { const lb = el.closest('label'); const sp = lb && lb.querySelector('span'); if (el.type === 'checkbox') { if (el.checked) d['confirmed'] = lb ? lb.textContent.trim() : 'yes'; return; } if (!el.value) return; d[el.name || (sp && sp.textContent.trim()) || el.placeholder || ('field ' + i)] = el.value; }); const picked = Array.from(f.querySelectorAll('button[aria-pressed="true"]')).map(b => b.textContent.replace('\u2713', '').trim()); if (picked.length) d.services = picked.join(', '); const dest = 'Thanks.dc.html?from=careers&back=' + encodeURIComponent(location.pathname.split('/').pop() + location.search); const go = () => { if (window.wsSubmit) window.wsSubmit.go(dest); else location.href = dest; }; if (window.wsSubmit) window.wsSubmit.start(); fetch('https://formsubmit.co/ajax/go@wastely.ca', { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify(d) }).then((r) => { if (r && r.ok) (window.dataLayer = window.dataLayer || []).push({ event: 'application_submitted', form_page: location.pathname }); }).catch(() => {}).then(go); window.addEventListener('pageshow', (ev) => { if (ev.persisted) { f.reset(); this.setState({ sent: false }); } }, { once: true }); setTimeout(go, 4000); },
