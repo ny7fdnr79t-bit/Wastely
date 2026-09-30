@@ -32,6 +32,9 @@
           <button type="button" onClick="{{ c.toggle }}" aria-pressed="false" style="display:flex;align-items:center;gap:6px;min-height:40px;padding:8px 12px;background:#16394F;border:1px solid rgba(252,252,237,0.14);color:#FCFCED;font-family:Inter,sans-serif;font-weight:400;font-size:13.5px;cursor:pointer;text-align:left" style-hover="border-color:#B1CDC6"><span style="font-size:14px;line-height:1;color:#B1CDC6">+</span>{{ c.label }}</button>
         </sc-if>
       </sc-for>
+      <sc-if value="{{ moreHidden }}" hint-placeholder-val="{{ false }}">
+        <button type="button" onClick="{{ showMore }}" style="display:flex;align-items:center;gap:6px;min-height:40px;padding:8px 12px;background:transparent;border:1px dashed rgba(177,205,198,0.5);color:#B1CDC6;font-family:Inter,sans-serif;font-weight:500;font-size:13.5px;cursor:pointer;text-align:left" style-hover="border-color:#B1CDC6;color:#FCFCED"><span style="font-size:14px;line-height:1">+</span>Combine with another service</button>
+      </sc-if>
     </div>
   </div>
 
@@ -93,7 +96,7 @@
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:560,&quot;height&quot;:1100},&quot;preselect&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;estate-cleanout&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
 class Component extends DCLogic {
-  state = { sent: false, jobs: null, size: '1,000–2,500 sq ft', fill: 'Normal contents', access: 'Ground level, truck at the door', speed: 'Standard — two weeks or more' };
+  state = { sent: false, showAll: false, jobs: null, size: '1,000–2,500 sq ft', fill: 'Normal contents', access: 'Ground level, truck at the door', speed: 'Standard — two weeks or more' };
   SIZE = { 'Under 1,000 sq ft': 0.65, '1,000–2,500 sq ft': 1, '2,500–5,000 sq ft': 1.55, '5,000–10,000 sq ft': 2.3, 'Over 10,000 sq ft': 3.4 };
   FILL = { 'Light — a few rooms': 0.75, 'Normal contents': 1, 'Packed — full to the walls': 1.4, 'Hoarding or biohazard': 1.9 };
   ACCESS = { 'Ground level, truck at the door': 1, 'Elevator building': 1.1, 'Stairs or walk-up': 1.18, 'Occupied or restricted site': 1.3 };
@@ -119,7 +122,8 @@ class Component extends DCLogic {
     const wLo = Math.max(mLo * 0.7, this.MIN), wHi = Math.max(mHi * 0.7, this.MIN * 1.35);
     const sel = (label, key, map) => ({ label, value: s[key], options: Object.keys(map), onChange: (e) => this.setState({ [key]: e.target.value }) });
     return {
-      chips: ordered.map(x => {
+      moreHidden: !!cur && !s.showAll, showMore: () => this.setState({ showAll: true }),
+      chips: ordered.filter(x => !cur || s.showAll || x === cur || jobs.includes(x.slug)).map(x => {
         const on = jobs.includes(x.slug);
         return { label: x.title, on, off: !on, toggle: () => this.setState(st => { const j = st.jobs || (pre ? [pre] : []); return { jobs: j.includes(x.slug) ? j.filter(y => y !== x.slug) : j.concat(x.slug) }; }) };
       }),
@@ -135,7 +139,7 @@ class Component extends DCLogic {
         : 'I understand Wastely takes on jobs from ' + this.money(this.MIN) + ' and up.',
       prompt: (cur && cur.prompt) || 'What is the property, and what has to come out?',
       sent: s.sent, notSent: !s.sent,
-      onSubmit: (e) => { e.preventDefault(); const f = e.target; const d = { _subject: 'Wastely website: ' + (document.title || 'enquiry'), _template: 'table', _captcha: 'false', page: location.href }; f.querySelectorAll('input,select,textarea').forEach((el, i) => { const lb = el.closest('label'); const sp = lb && lb.querySelector('span'); if (el.type === 'checkbox') { if (el.checked) d['confirmed'] = lb ? lb.textContent.trim() : 'yes'; return; } if (!el.value) return; d[el.name || (sp && sp.textContent.trim()) || el.placeholder || ('field ' + i)] = el.value; }); const picked = Array.from(f.querySelectorAll('button[aria-pressed="true"]')).map(b => b.textContent.replace('\u2713', '').trim()); if (picked.length) d.services = picked.join(', '); const dest = 'Thanks.dc.html?back=' + encodeURIComponent(location.pathname.split('/').pop() + location.search); const go = () => { if (window.wsSubmit) window.wsSubmit.go(dest); else location.href = dest; }; if (window.wsSubmit) window.wsSubmit.start(); fetch('https://formsubmit.co/ajax/go@wastely.ca', { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify(d) }).then((r) => { if (r && r.ok) (window.dataLayer = window.dataLayer || []).push({ event: 'quote_submitted', form_page: location.pathname }); }).catch(() => {}).then(go); window.addEventListener('pageshow', (ev) => { if (ev.persisted) { f.reset(); this.setState({ sent: false }); } }, { once: true }); setTimeout(go, 4000); }
+      onSubmit: (e) => { e.preventDefault(); const f = e.target; const d = { _subject: 'Wastely website: ' + (document.title || 'enquiry'), _template: 'table', _captcha: 'false', page: location.href }; f.querySelectorAll('input,select,textarea').forEach((el, i) => { const lb = el.closest('label'); const sp = lb && lb.querySelector('span'); if (el.type === 'checkbox') { if (el.checked) d['confirmed'] = lb ? lb.textContent.trim() : 'yes'; return; } if (!el.value) return; d[el.name || (sp && sp.textContent.trim()) || el.placeholder || ('field ' + i)] = el.value; }); const picked = Array.from(f.querySelectorAll('button[aria-pressed="true"]')).map(b => b.textContent.replace('\u2713', '').trim()); if (picked.length) d.services = picked.join(', '); const dest = 'Thanks.dc.html?back=' + encodeURIComponent(location.pathname.split('/').pop() + location.search); const go = () => { if (window.wsSubmit) window.wsSubmit.go(dest); else location.href = dest; }; if (window.wsSubmit) window.wsSubmit.start(); (window.wsSubmit && window.wsSubmit.send ? window.wsSubmit.send(d, 'go@wastely.ca') : fetch('https://formsubmit.co/ajax/go@wastely.ca', { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify(d) }).then((r) => !!(r && r.ok)).catch(() => false)).then((ok) => { if (ok) { (window.dataLayer = window.dataLayer || []).push({ event: 'quote_submitted', form_page: location.pathname }); go(); } else if (window.wsSubmit && window.wsSubmit.fail) { window.wsSubmit.fail(); } else { go(); } }); window.addEventListener('pageshow', (ev) => { if (ev.persisted) { f.reset(); this.setState({ sent: false }); } }, { once: true }); }
     };
   }
 }

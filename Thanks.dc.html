@@ -56,6 +56,9 @@
     </sc-if>
     <div style="display:flex;flex-wrap:wrap;gap:12px">
       <a href="tel:+13438011914" style="display:inline-flex;align-items:center;padding:17px 30px;background:#B1CDC6;color:#0E2438;font-weight:700;font-size:16px;letter-spacing:0.035em" style-hover="background:#D2E3DE">Call (343) 801-1914</a>
+      <sc-if value="{{ isQuote }}" hint-placeholder-val="{{ true }}">
+        <a href="sms:+13438011914" style="display:inline-flex;align-items:center;padding:17px 30px;border:1px solid #B1CDC6;color:#FCFCED;font-weight:700;font-size:16px;letter-spacing:0.035em" style-hover="background:#16394F">Text us photos</a>
+      </sc-if>
       <a href="{{ againHref }}" style="display:inline-flex;align-items:center;padding:17px 30px;border:1px solid rgba(252,252,237,0.25);color:#FCFCED;font-weight:600;font-size:16px;letter-spacing:0.02em" style-hover="border-color:#B1CDC6;color:#FCFCED">{{ againLabel }}</a>
     </div>
   </section>
@@ -82,7 +85,7 @@ class Component extends DCLogic {
         : 'Your project details are with our team. Expect a call back within the hour. If the job is urgent, call now and dispatch will pick up live, 24 hours a day.',
       steps: [
         { num: '01', title: 'We call you back', body: 'Within the hour, to confirm scope, access and timing.' },
-        { num: '02', title: 'Site walk or photos', body: 'We see the job before we price it, in person or from photos you send.' },
+        { num: '02', title: 'Site walk or photos', body: 'We see the job before we price it. Text photos to (343) 801-1914 now and your quote comes back faster.' },
         { num: '03', title: 'Fixed written quote', body: 'One number covering labour, hauling, disposal and documentation.' }
       ]
     };

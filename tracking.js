@@ -18,8 +18,12 @@
     window.gtag('event', 'conversion', params);
   }
 
+  var onThanks = /\/thanks$|thanks\.dc\.html/i.test(location.pathname);
+
   // Phone and text taps. composedPath() also finds links inside page components.
+  // Not counted on the thank-you page: that visitor is already counted as a quote.
   document.addEventListener('click', function (e) {
+    if (onThanks) return;
     var path = e.composedPath ? e.composedPath() : [e.target];
     for (var i = 0; i < path.length; i++) {
       var el = path[i];
