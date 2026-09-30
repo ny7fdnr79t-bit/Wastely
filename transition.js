@@ -31,7 +31,7 @@
   /* ---- Delivery: only report success when an email service confirms it. ----
      WEB3FORMS_KEY: paste the access key from web3forms.com to make it the main
      service. FormSubmit stays as the backup, so a lead is only lost if both fail. */
-  var WEB3FORMS_KEY = '';
+  var WEB3FORMS_KEY = '6b1423b0-9d36-4954-b7cc-7f483534dd80';
   var PHONE = '(343) 801-1914', PHONE_E164 = '+13438011914';
 
   function post(url, body, ms) {
