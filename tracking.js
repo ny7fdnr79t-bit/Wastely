@@ -5,9 +5,9 @@
 (function () {
   var AW = 'AW-16825129496';
   var LABELS = {
-    lead: '',  // "Quote form" conversion
-    call: '',  // "Website phone tap" conversion
-    text: ''   // "Website text tap" conversion
+    lead: 'QHQuCMO7oIsdEJi07NY-',  // "Quote form" conversion
+    call: 'ujdsCO6H5YsdEJi07NY-',  // "Website phone tap" conversion
+    text: '5OwpCKmK6YsdEJi07NY-'   // "Website text tap" conversion
   };
 
   function send(kind, extra) {
