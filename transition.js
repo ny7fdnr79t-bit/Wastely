@@ -51,10 +51,24 @@
   function viaFormSubmit(d, to) {
     return post('https://formsubmit.co/ajax/' + (to || 'go@wastely.ca'), d, 15000).then(function (r) { return r.ok && (r.json.success === true || r.json.success === 'true'); });
   }
+   // Copy each submission into the Wastely CRM (Web leads). Never blocks the form.
+  function toCrm(d, to) {
+    try {
+      var p = location.pathname.toLowerCase();
+      var form = (to && to !== 'go@wastely.ca') || p.indexOf('career') >= 0 ? 'Careers' : p.indexOf('contact') >= 0 ? 'Contact' : 'Quote request';
+      fetch('https://jackrabbit-psi.vercel.app/api/forms', {
+        method: 'POST', keepalive: true,
+        headers: { 'Content-Type': 'text/plain;charset=UTF-8' },
+        body: JSON.stringify({ form: form, page: location.href, fields: d })
+      }).catch(function () {});
+    } catch (e) {}
+  }
   function send(d, to) {
+    toCrm(d, to);
     // Careers-only addresses skip Web3Forms so applications still reach the right inbox.
     var first = (!to || to === 'go@wastely.ca') ? viaWeb3(d) : Promise.resolve(false);
     return first.then(function (ok) { return ok || viaFormSubmit(d, to); });
+  }
   }
   function fail() {
     if (!el) build();
