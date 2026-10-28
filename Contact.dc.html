@@ -70,7 +70,7 @@
         <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,170px),1fr));gap:18px">
           <label style="display:flex;flex-direction:column;gap:8px">
             <span style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:#829AAA">Name</span>
-            <input type="text" placeholder="Full name" style="background:#16394F;border:1px solid rgba(252,252,237,0.14);color:#FCFCED;font-family:Inter,sans-serif;font-weight:300;font-size:16px;padding:13px 14px;outline:none" style-focus="border-color:#B1CDC6" />
+            <input type="text" required="required" placeholder="Full name" style="background:#16394F;border:1px solid rgba(252,252,237,0.14);color:#FCFCED;font-family:Inter,sans-serif;font-weight:300;font-size:16px;padding:13px 14px;outline:none" style-focus="border-color:#B1CDC6" />
           </label>
           <label style="display:flex;flex-direction:column;gap:8px">
             <span style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:#829AAA">Company</span>
@@ -80,11 +80,11 @@
         <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,170px),1fr));gap:18px">
           <label style="display:flex;flex-direction:column;gap:8px">
             <span style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:#829AAA">Email</span>
-            <input type="email" placeholder="you@company.com" style="background:#16394F;border:1px solid rgba(252,252,237,0.14);color:#FCFCED;font-family:Inter,sans-serif;font-weight:300;font-size:16px;padding:13px 14px;outline:none" style-focus="border-color:#B1CDC6" />
+            <input type="email" required="required" placeholder="you@company.com" style="background:#16394F;border:1px solid rgba(252,252,237,0.14);color:#FCFCED;font-family:Inter,sans-serif;font-weight:300;font-size:16px;padding:13px 14px;outline:none" style-focus="border-color:#B1CDC6" />
           </label>
           <label style="display:flex;flex-direction:column;gap:8px">
             <span style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:#829AAA">Phone</span>
-            <input type="tel" placeholder="Your phone number" style="background:#16394F;border:1px solid rgba(252,252,237,0.14);color:#FCFCED;font-family:Inter,sans-serif;font-weight:300;font-size:16px;padding:13px 14px;outline:none" style-focus="border-color:#B1CDC6" />
+            <input type="tel" required="required" placeholder="Your phone number" style="background:#16394F;border:1px solid rgba(252,252,237,0.14);color:#FCFCED;font-family:Inter,sans-serif;font-weight:300;font-size:16px;padding:13px 14px;outline:none" style-focus="border-color:#B1CDC6" />
           </label>
         </div>
         <div style="display:flex;flex-direction:column;gap:8px">
@@ -113,6 +113,10 @@
         <label style="display:flex;flex-direction:column;gap:8px">
           <span style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:#829AAA">Project details</span>
           <textarea rows="5" placeholder="What is the building, how big is it, and what has to come out?" style="background:#16394F;border:1px solid rgba(252,252,237,0.14);color:#FCFCED;font-family:Inter,sans-serif;font-weight:300;font-size:16px;padding:13px 14px;outline:none;resize:vertical" style-focus="border-color:#B1CDC6"></textarea>
+        </label>
+        <label style="display:flex;align-items:flex-start;gap:12px;padding:16px;border:1px solid rgba(252,252,237,0.14);background:#16394F;cursor:pointer">
+          <input type="checkbox" required="required" style="width:18px;height:18px;margin:2px 0 0;accent-color:#B1CDC6;flex-shrink:0" />
+          <span style="font-size:14.5px;color:#AEC1CD;line-height:1.55">I understand Wastely takes on jobs from $2,500 and up.</span>
         </label>
         <button type="submit" style="margin-top:6px;padding:16px 28px;background:#B1CDC6;color:#0E2438;border:none;font-family:Inter,sans-serif;font-weight:700;font-size:16px;letter-spacing:0.045em;cursor:pointer" style-hover="background:#D2E3DE">{{ submitLabel }}</button>
         <sc-if value="{{ sent }}" hint-placeholder-val="{{ false }}">
